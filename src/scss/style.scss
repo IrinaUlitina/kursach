@@ -1,0 +1,135 @@
+@import '~bootstrap/scss/bootstrap';
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: 300ms;
+}
+
+// .container{
+//     width: 90%;
+//     margin: 0 auto;
+// }
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+a{
+    color: #000;
+    text-decoration: none;
+}
+.t16{
+    font-size: 16px;
+}
+body{
+    // background: url(/public/img/fon.jpg);
+    background: #000;
+    background: url(/public/img/fon.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+#root{
+    height: 94.2vh;
+}
+.header{
+
+}
+
+ol, ul, dl {
+    display: block;
+}
+li{
+    display: block;
+}
+.ligi{
+    height: 100%;
+    .mb-1{
+        max-width: 400px;
+    }
+    &_menu{
+        padding: 30px 0px;
+        
+    }
+    &_box{
+        height: 100%;
+        background: #00000080;
+        backdrop-filter: blur(3px);
+    }
+    h1{
+        color: var(--bs-card-title-color);
+        color: #fff;
+    }
+    &_list{
+        padding: 30px 0px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        width: 100%;
+    }
+
+    &_content{
+        flex-direction: column;
+    }
+    &_date{
+        justify-content: start;
+        gap: 20px;
+    }
+    &_card{
+        padding: 15px;
+        min-height: 200px;
+        cursor: pointer;
+        position: relative;
+        background: var(--bs-border-color-translucent);
+        &:hover{
+            background:rgba(48, 56, 73, 0.479);
+        }
+        &_title{
+            color: #fff;
+        }
+
+        &_img{
+            max-height: 100px;
+            width: auto;
+        }
+    }
+
+    &_strong{
+        gap: 10px;
+        padding: 20px 0px;
+        display: flex;
+        flex-direction: column;
+        .cart_strong{
+            padding: 10px 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 20px;
+            width: 100%;
+
+            &_name{
+                align-items: flex-start;
+                width: 100%;
+                justify-content: space-between;
+            }
+            .card-text{
+                height: 100%;
+                text-wrap: nowrap;
+                &.end{
+                    text-align: end;
+                }
+            }
+        }
+    }
+    .page-link{
+        
+    }
+}
+.navigation{
+    display: flex;
+}
+.paginac{
+
+}
