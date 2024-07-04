@@ -35,7 +35,7 @@ export default function KalendarKomand() {
                 <div className="ligi_menu">
                     <Breadcrumb>
                         <Breadcrumb.Item href="/">
-                            Лиги
+                            Команды
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
                             {error ? (

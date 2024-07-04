@@ -31,9 +31,17 @@ body{
     background-position: center center;
     background-repeat: no-repeat;
     min-height: 100vh;
+    background-attachment: fixed;
 }
 #root{
-    height: 94.2vh;
+    
+    height: 94.5vh;
+    @media only screen and (max-width : 1200px) {
+       
+        min-height: auto;
+        height: 100%;
+    
+    }
 }
 .header{
 
@@ -69,6 +77,10 @@ li{
         grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         width: 100%;
+@media only screen and (max-width : 1200px) {
+    grid-template-columns: repeat(2, 1fr);
+
+}
     }
 
     &_content{
