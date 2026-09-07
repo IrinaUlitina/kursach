@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { CheckBadge, PlaceholderArt } from "@/components/Art";
+import { AudienceBenefits } from "@/components/AudienceBenefits";
 import { RequestForm } from "@/components/RequestForm";
 import { SectionHeading } from "@/components/PageBits";
 import { SessionHomeNote } from "@/components/SessionHomeNote";
+import { services as serviceItems } from "@/lib/content/services";
 
 export default function HomePage() {
   return (
@@ -51,6 +53,8 @@ export default function HomePage() {
         ))}
       </section>
 
+      <AudienceBenefits />
+
       <section className="pt-4">
         <SectionHeading
           title="Какие задачи закрываем"
@@ -83,11 +87,15 @@ export default function HomePage() {
           lead="Открытый каталог направлений. Карточки услуг видны гостям; исполнение и статусы — в кабинете."
         />
         <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((item) => (
-            <article key={item.title} className="rounded-[18px] bg-surface p-6">
+          {serviceItems.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/services/${item.slug}`}
+              className="rounded-[18px] bg-surface p-6 hover:ring-1 hover:ring-primary/20"
+            >
               <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{item.text}</p>
-            </article>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{item.short}</p>
+            </Link>
           ))}
         </div>
         <Link
@@ -117,10 +125,10 @@ export default function HomePage() {
           ))}
         </ol>
         <Link
-          href="/register"
+          href="/how-it-works"
           className="mt-6 inline-flex text-sm font-semibold text-primary hover:underline"
         >
-          Регистрация
+          Подробнее: как пользоваться
         </Link>
       </section>
 
@@ -175,33 +183,6 @@ const tasks = [
     title: "Недвижимость и бизнес",
     text: "Сопровождение покупки, аренды и корпоративных сделок. Кейсы и каталог — без регистрации; переписка и чёрный список — в кабинете.",
     art: "Контур сделки — CSS-заглушка",
-  },
-];
-
-const services = [
-  {
-    title: "Юридическое сопровождение",
-    text: "Договоры, проверки, представительство по недвижимости и бизнесу.",
-  },
-  {
-    title: "Кадастр и межевание",
-    text: "Учёт участка, границы, подготовка к сделке и стройке.",
-  },
-  {
-    title: "Проектирование",
-    text: "Эскиз, рабочая документация, согласования в одном контуре.",
-  },
-  {
-    title: "Строительство",
-    text: "Генподряд и узкие работы: от фундамента до отделки.",
-  },
-  {
-    title: "Оценка и экспертиза",
-    text: "Стоимость объекта и проверка качества для сделки.",
-  },
-  {
-    title: "Справки и выписки",
-    text: "ЕГРН, ЕГРЮЛ, арбитраж — заказ после входа в кабинет.",
   },
 ];
 

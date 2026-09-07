@@ -1,85 +1,85 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Gated } from "@/components/Gated";
-import { GuestNote, PageHero, Card } from "@/components/PageBits";
+import { GuestNote, PageHero } from "@/components/PageBits";
+import { TrustMeta, WriteCta } from "@/components/TrustUi";
+import { getCompany } from "@/lib/content/companies";
+import { feedPosts } from "@/lib/content/feed";
 
 export const metadata: Metadata = {
   title: "Лента",
-  description: "Открытая лента Центра услуг — новости платформы и витрины.",
+  description: "Модерируемая лента Центра услуг: кейсы, поиск подрядчика, анонсы.",
 };
 
 export default function FeedPage() {
   return (
     <div className="mt-5 flex flex-col gap-6">
       <PageHero
-        eyebrow="Публично"
+        eyebrow="Модерация"
         title="Лента"
-        lead="Открытые материалы витрины видит гость. Личные сообщения и внутренние статусы — только после входа."
+        lead="Кейсы, запросы «ищу подрядчика», анонсы платформы. Гость читает публичные посты. Бейджи доверия и «написать» — после регистрации."
       />
       <Gated
         guest={<GuestNote />}
         registered={
           <p className="rounded-[18px] bg-primary-soft px-4 py-3 text-sm leading-relaxed text-ink">
-            Публичная лента как у гостя, плюс учебный блок сообщений. Это не живой чат.
+            В ленте те же публичные посты плюс учебные статусы у карточек компаний.
+            Личный ЧС сюда не выносится.
           </p>
         }
       />
       <div className="grid gap-4">
-        {posts.map((item) => (
-          <Card key={item.title} meta={item.meta} title={item.title} text={item.text} />
-        ))}
+        {feedPosts.map((post) => {
+          const company = post.companySlug ? getCompany(post.companySlug) : undefined;
+          return (
+            <article key={post.slug} className="rounded-[18px] bg-surface p-5 sm:p-6">
+              <div className="flex flex-wrap items-center gap-2 text-xs font-medium uppercase tracking-wide text-primary">
+                <span>{post.kindLabel}</span>
+                <span className="text-muted">{post.date}</span>
+              </div>
+              <h2 className="mt-2 text-lg font-semibold text-ink">{post.title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted">{post.body}</p>
+              {company ? (
+                <div className="mt-4 flex flex-wrap items-center gap-3">
+                  <Link
+                    href={`/companies/${company.slug}`}
+                    className="text-sm font-semibold text-primary hover:underline"
+                  >
+                    {company.name}
+                  </Link>
+                  <TrustMeta rating={company.rating} reviews={company.reviews} />
+                  {post.kind === "contractor" ? <WriteCta /> : null}
+                </div>
+              ) : null}
+            </article>
+          );
+        })}
       </div>
       <Gated
         guest={
           <section className="rounded-[20px] bg-surface p-6 sm:p-8">
-            <h2 className="text-lg font-semibold text-ink">Переписка скрыта</h2>
+            <h2 className="text-lg font-semibold text-ink">Отклик скрыт для гостя</h2>
             <p className="mt-2 text-sm leading-relaxed text-muted">
-              Сообщения компаниям и отклики не попадают в ленту гостя.
+              Написать компании по запросу «ищу подрядчика» можно после входа.
             </p>
             <Link
               href="/register"
               className="mt-5 inline-flex rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-[#0c667e]"
             >
-              Открыть после регистрации
+              Зарегистрироваться
             </Link>
           </section>
         }
         registered={
-          <section className="rounded-[20px] bg-surface p-6 sm:p-8">
-            <p className="text-xs font-medium uppercase tracking-wide text-primary">Сообщение · демо</p>
-            <h2 className="mt-1 text-lg font-semibold text-ink">
-              Компания «Витрина-демо» ответила на заявку
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted">
-              Учебный отклик для зарегистрированного. Гость этот блок не видит.
-            </p>
-            <Link
-              href="/cabinet#messages"
-              className="mt-4 inline-flex text-sm font-semibold text-primary hover:underline"
-            >
-              Открыть в кабинете
+          <p className="text-sm text-muted">
+            Ответы уходят в{" "}
+            <Link href="/cabinet#messages" className="font-semibold text-primary hover:underline">
+              кабинет · сообщения
             </Link>
-          </section>
+            . Это демо без сервера.
+          </p>
         }
       />
     </div>
   );
 }
-
-const posts = [
-  {
-    meta: "Платформа",
-    title: "Запуск витрины в Ульяновске",
-    text: "Каталог компаний и услуг можно смотреть без аккаунта. Кабинет справок — следующий шаг после регистрации.",
-  },
-  {
-    meta: "Направления",
-    title: "Цепочка: юрист, кадастр, проект, стройка",
-    text: "Заявка «под ключ» собирает контур под задачу, а не одну случайную карточку.",
-  },
-  {
-    meta: "Доступ",
-    title: "Что остаётся за входом",
-    text: "Чёрный список, статусы доверия и переписка. На витрине гостя этого нет специально.",
-  },
-];

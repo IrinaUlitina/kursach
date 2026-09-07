@@ -20,6 +20,7 @@ export const footerNav = {
     { href: "/feed", label: "Лента" },
     { href: "/request", label: "Оставить заявку" },
     { href: "/for-specialists", label: "Специалистам" },
+    { href: "/how-it-works", label: "Как пользоваться" },
     { href: "/after-register", label: "После регистрации" },
   ],
   catalog: [

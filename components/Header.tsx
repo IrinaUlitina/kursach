@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { AuthChrome } from "@/components/AuthChrome";
 import { BrandMark } from "@/components/BrandMark";
-import { cityLabel, navLinks, utilityLinks } from "@/lib/nav";
+import { MainNav } from "@/components/MainNav";
+import { cityLabel, utilityLinks } from "@/lib/nav";
 
 function PinIcon() {
   return (
@@ -47,18 +48,7 @@ export function Header() {
         >
           <BrandMark />
 
-          <ul className="hidden min-w-0 flex-1 items-center justify-center gap-1 lg:flex xl:gap-2">
-            {navLinks.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="rounded-full px-2.5 py-1.5 text-[13px] font-medium text-muted hover:bg-bg hover:text-ink xl:px-3 xl:text-sm"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <MainNav variant="desktop" />
 
           <div className="ml-auto flex items-center gap-1 sm:gap-2">
             <AuthChrome variant="desktop" />
@@ -77,18 +67,7 @@ export function Header() {
                 <MenuIcon />
               </summary>
               <div className="absolute right-0 top-[calc(100%+10px)] z-50 w-[min(18rem,calc(100vw-2rem))] rounded-[20px] border border-line bg-surface p-3 shadow-[var(--shadow-nav)]">
-                <ul className="flex flex-col">
-                  {navLinks.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="block rounded-xl px-3 py-2.5 text-sm font-medium text-ink hover:bg-bg"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+                <MainNav variant="mobile" />
                 <AuthChrome variant="mobile" />
               </div>
             </details>

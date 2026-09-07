@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { GuestNote, PageHero, Card } from "@/components/PageBits";
+import Link from "next/link";
+import { PageHero } from "@/components/PageBits";
+import { services } from "@/lib/content/services";
 
 export const metadata: Metadata = {
   title: "Услуги",
-  description: "Направления услуг Центра услуг: недвижимость, стройка, справки, бизнес.",
+  description: "Направления Центра услуг: юристы, бухгалтерия, риэлторы, IT, кадастр, проект, стройка, под ключ.",
 };
 
 export default function ServicesPage() {
@@ -12,47 +14,30 @@ export default function ServicesPage() {
       <PageHero
         eyebrow="Каталог"
         title="Услуги"
-        lead="Публичный список направлений. Исполнение, сроки и переписка по заявке доступны после регистрации."
+        lead="Восемь направлений в одном контуре. Карточки открыты гостям. Исполнение, переписка и справки — после регистрации."
+        actions={
+          <Link
+            href="/request"
+            className="inline-flex rounded-full bg-white px-5 py-3 text-sm font-semibold text-primary hover:bg-primary-soft"
+          >
+            Заявка «под ключ»
+          </Link>
+        }
       />
-      <GuestNote />
       <div className="grid gap-4 sm:grid-cols-2">
-        {items.map((item) => (
-          <Card key={item.title} meta={item.meta} title={item.title} text={item.text} href="/request" />
+        {services.map((item) => (
+          <Link
+            key={item.slug}
+            href={`/services/${item.slug}`}
+            className="rounded-[18px] bg-surface p-6 hover:ring-1 hover:ring-primary/20"
+          >
+            <p className="text-xs font-medium uppercase tracking-wide text-primary">{item.kicker}</p>
+            <h2 className="mt-1 text-lg font-semibold text-ink">{item.title}</h2>
+            <p className="mt-2 text-sm leading-relaxed text-muted">{item.short}</p>
+            <p className="mt-3 text-sm font-medium text-ink">Для кого: {item.forWhom}</p>
+          </Link>
         ))}
       </div>
     </div>
   );
 }
-
-const items = [
-  {
-    meta: "Документы",
-    title: "Кадастр и земля",
-    text: "Учёт, границы, подготовка участка к сделке или стройке.",
-  },
-  {
-    meta: "Право",
-    title: "Юридическое сопровождение",
-    text: "Проверка объекта, договоры, представительство.",
-  },
-  {
-    meta: "Проект",
-    title: "Проектирование и согласования",
-    text: "От эскиза до комплекта документов под стройку.",
-  },
-  {
-    meta: "Стройка",
-    title: "Генподряд «под ключ»",
-    text: "Маршрутизация подрядчиков под коттедж или коммерческий объект.",
-  },
-  {
-    meta: "Сделки",
-    title: "Недвижимость и бизнес",
-    text: "Покупка, аренда, сопровождение корпоративных сделок.",
-  },
-  {
-    meta: "Справки",
-    title: "Выписки в кабинете",
-    text: "ЕГРН, ЕГРЮЛ, арбитраж — заказ после входа, не на этой странице.",
-  },
-];
