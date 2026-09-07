@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #eef1f4;
+  --surface: #ffffff;
+  --ink: #0b1f2a;
+  --muted: #5b6b7c;
+  --primary: #0e7490;
+  --primary-soft: #e6f4f7;
+  --hero-from: #0a1e36;
+  --hero-to: #134a6a;
+  --line: #d8dee6;
+  --radius-hero: 32px;
+  --radius-panel: 28px;
+  --radius-card: 18px;
+  --radius-pill: 999px;
+  --shadow-nav: 0 8px 28px rgba(11, 31, 42, 0.08);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-soft: var(--primary-soft);
+  --color-hero-from: var(--hero-from);
+  --color-hero-to: var(--hero-to);
+  --color-line: var(--line);
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --radius-hero: 32px;
+  --radius-panel: 28px;
+  --radius-card: 18px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--ink);
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--hero-from) 0%, var(--hero-to) 100%);
+}
+
+.art-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  padding: 0.75rem 0.9rem;
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+details.nav-menu > summary {
+  list-style: none;
+}
+
+details.nav-menu > summary::-webkit-details-marker {
+  display: none;
+}
