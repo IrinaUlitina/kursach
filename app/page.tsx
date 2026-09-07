@@ -2,10 +2,12 @@ import Link from "next/link";
 import { CheckBadge, PlaceholderArt } from "@/components/Art";
 import { RequestForm } from "@/components/RequestForm";
 import { SectionHeading } from "@/components/PageBits";
+import { SessionHomeNote } from "@/components/SessionHomeNote";
 
 export default function HomePage() {
   return (
     <div className="mt-5 flex flex-col gap-8 lg:gap-10">
+      <SessionHomeNote />
       <section className="hero-gradient grid items-center gap-10 rounded-[32px] px-5 py-10 text-white sm:px-8 sm:py-12 lg:grid-cols-[1.15fr_0.85fr] lg:px-14 lg:py-16">
         <div>
           <h1 className="max-w-xl text-[1.85rem] font-extrabold leading-[1.15] tracking-tight sm:text-4xl lg:text-[3.15rem]">
@@ -27,6 +29,12 @@ export default function HomePage() {
               className="text-sm font-semibold text-white underline-offset-4 hover:underline"
             >
               Сделать под ключ
+            </Link>
+            <Link
+              href="/register"
+              className="text-sm font-semibold text-white/80 underline-offset-4 hover:text-white hover:underline"
+            >
+              Регистрация
             </Link>
           </div>
         </div>
@@ -108,6 +116,12 @@ export default function HomePage() {
             </li>
           ))}
         </ol>
+        <Link
+          href="/register"
+          className="mt-6 inline-flex text-sm font-semibold text-primary hover:underline"
+        >
+          Регистрация
+        </Link>
       </section>
 
       <section className="grid items-start gap-8 rounded-[32px] bg-surface p-5 sm:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-12">
@@ -206,6 +220,6 @@ const steps = [
   },
   {
     title: "Войдите за полным доступом",
-    text: "Справки, статусы, сообщения и чёрный список — только в кабинете.",
+    text: "Регистрация открывает справки, статусы, сообщения, свои заявки и чёрный список. Лиды и доска заказов — у бизнеса и специалиста с тарифом.",
   },
 ];

@@ -42,11 +42,19 @@ export function Footer() {
 
         <div>
           <h2 className="text-sm font-semibold text-ink">Доступ</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted">
-            Гости видят компании, услуги и открытую ленту. Чёрный список,
-            статусы доверия, сообщения и кабинет справок — после регистрации.
+          <ul className="mt-3 space-y-2">
+            {footerNav.access.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-sm text-muted hover:text-ink">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm leading-relaxed text-muted">
+            Гость видит витрину. ЧС, статусы, переписка и справки — после
+            регистрации. Лиды и доска заказов — тариф бизнеса/специалиста.
           </p>
-          <p className="mt-4 text-sm text-muted">Ульяновск</p>
         </div>
       </div>
 

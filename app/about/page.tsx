@@ -20,8 +20,17 @@ export default function AboutPage() {
           <h2 className="text-xl font-semibold text-ink">Как устроен доступ</h2>
           <p className="mt-3 text-sm leading-relaxed text-muted">
             Гость видит компании, услуги, ленту и кейсы. После регистрации
-            открываются чёрный список, статусы доверия, сообщения и кабинет
-            справок. Закрытые данные на маркетинговых страницах не показываем.
+            открываются чёрный список, статусы доверия, сообщения, свои заявки
+            и кабинет справок. Лиды и доска заказов — у бизнеса и специалиста
+            с тарифом.{" "}
+            <Link href="/after-register" className="font-semibold text-primary hover:underline">
+              Сравнение доступа
+            </Link>
+            {" · "}
+            <Link href="/register" className="font-semibold text-primary hover:underline">
+              Регистрация
+            </Link>
+            .
           </p>
         </article>
         <article className="rounded-[20px] bg-surface p-6 sm:p-8">

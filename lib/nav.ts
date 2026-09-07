@@ -20,11 +20,17 @@ export const footerNav = {
     { href: "/feed", label: "Лента" },
     { href: "/request", label: "Оставить заявку" },
     { href: "/for-specialists", label: "Специалистам" },
+    { href: "/after-register", label: "После регистрации" },
   ],
   catalog: [
     { href: "/companies", label: "Компании" },
     { href: "/services", label: "Услуги" },
     { href: "/cases", label: "Кейсы" },
     { href: "/certificates", label: "Справки" },
+  ],
+  access: [
+    { href: "/register", label: "Регистрация" },
+    { href: "/login", label: "Вход" },
+    { href: "/cabinet", label: "Кабинет" },
   ],
 } as const;

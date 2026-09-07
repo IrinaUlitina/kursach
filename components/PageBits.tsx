@@ -83,7 +83,10 @@ export function GuestNote() {
     <p className="rounded-[18px] bg-primary-soft px-4 py-3 text-sm leading-relaxed text-ink">
       Витрина открыта без регистрации. Чёрный список, статусы доверия, сообщения
       и кабинет справок доступны после входа — закрытые данные здесь не
-      показываем.
+      показываем.{" "}
+      <Link href="/register" className="font-semibold text-primary hover:underline">
+        Регистрация
+      </Link>
     </p>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthChrome } from "@/components/AuthChrome";
 import { BrandMark } from "@/components/BrandMark";
 import { cityLabel, navLinks, utilityLinks } from "@/lib/nav";
 
@@ -60,13 +61,7 @@ export function Header() {
           </ul>
 
           <div className="ml-auto flex items-center gap-1 sm:gap-2">
-            <button
-              type="button"
-              title="Вход появится после запуска кабинета"
-              className="hidden rounded-full px-3 py-2 text-sm font-medium text-ink hover:bg-bg sm:inline-flex"
-            >
-              Войти
-            </button>
+            <AuthChrome variant="desktop" />
             <Link
               href="/request"
               className="inline-flex items-center rounded-full bg-primary px-3.5 py-2 text-[13px] font-semibold text-white hover:bg-[#0c667e] sm:px-4 sm:text-sm"
@@ -94,13 +89,7 @@ export function Header() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  title="Вход появится после запуска кабинета"
-                  className="mt-1 w-full rounded-xl px-3 py-2.5 text-left text-sm font-medium text-muted hover:bg-bg sm:hidden"
-                >
-                  Войти
-                </button>
+                <AuthChrome variant="mobile" />
               </div>
             </details>
           </div>
